@@ -13,8 +13,9 @@ while getopts ":a:r:b:p:h" o; do case "${o}" in
 	*) printf "Invalid option: -%s\\n" "$OPTARG" && exit ;;
 esac done
 
-[ -z "$dotfilesrepo" ] && dotfilesrepo="https://github.com/PlatinumClaridge/voidrice.git"
-[ -z "$progsfile" ] && progsfile="https://raw.githubusercontent.com/PlatinumClaridge/LARBS/master/progs.csv"
+$GITHUB_ORGANISATION="HuguesDuboisXyz"
+[ -z "$dotfilesrepo" ] && dotfilesrepo="https://github.com/$GITHUB_ORGANISATION/voidrice.git"
+[ -z "$progsfile" ] && progsfile="https://raw.githubusercontent.com/$GITHUB_ORGANISATION/LARBS/master/progs.csv"
 [ -z "$repobranch" ] && repobranch="master"
 
 ### FUNCTIONS ###
@@ -31,7 +32,7 @@ welcomemsg() { \
 getuser() { \
 	# Prompts user for their username.
 	name=$(dialog --inputbox "First, please enter the username you created during the Void Linux install process." 10 60 3>&1 1>&2 2>&3 3>&1) || exit
-	repodir="/home/$name/repos"; sudo -u $name mkdir -p "$repodir"
+	repodir="/home/$name/src"; sudo -u $name mkdir -p "$repodir"
 	while ! echo "$name" | grep "^[a-z_][a-z0-9_-]*$" >/dev/null 2>&1; do
 		name=$(dialog --no-cancel --inputbox "Username not valid. Be sure your username contains valid characters: lowercase letters, - or _." 10 60 3>&1 1>&2 2>&3 3>&1)
 	done ;}
@@ -46,8 +47,12 @@ maininstall() { # Installs all needed programs from main repo.
 	}
 
 gitmakeinstall() {
+	basepath=$(echo ${1%/*} | sed -e "s/https\:\/\///g")
+	basedir="$repodir/$basepath"
+	mkdir -p $basedir
 	progname="$(basename "$1")"
-	dir="$repodir/$progname"
+	progname_noext="$(echo "$progname" | sed -e "s/\.git$//g")"
+	dir="$basedir/$progname_noext"
 	dialog --title "LARBS Installation" --infobox "Installing \`$progname\` ($n of $total) via \`git\` and \`make\`. $(basename "$1") $2" 5 70
 	sudo -u "$name" git clone --depth 1 "$1" "$dir" >/dev/null 2>&1 || { cd "$dir" || return ; sudo -u "$name" git pull --force origin master;}
 	cd "$dir" || exit
