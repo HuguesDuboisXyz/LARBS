@@ -15,7 +15,7 @@ while getopts ":a:r:b:p:h" o; do case "${o}" in
 	*) printf "Invalid option: -%s\\n" "$OPTARG" && exit ;;
 esac done
 
-$GITHUB_ORGANISATION="HuguesDuboisXyz"
+GITHUB_ORGANISATION="HuguesDuboisXyz"
 [ -z "$dotfilesrepo" ] && dotfilesrepo="https://github.com/$GITHUB_ORGANISATION/voidrice.git"
 [ -z "$progsfile" ] && progsfile="https://raw.githubusercontent.com/$GITHUB_ORGANISATION/LARBS/master/progs.csv"
 [ -z "$repobranch" ] && repobranch="master"
@@ -28,7 +28,7 @@ grepseq="\"^[PGV]*,\""
 error() { clear; printf "ERROR:\\n%s\\n" "$1"; exit;}
 
 welcomemsg() { \
-	dialog --title "Welcome!" --msgbox "Welcome to Luke's Auto-Rice Bootstrapping Script!\\n\\nThis script will automatically install a fully-featured Linux desktop, which I use as my main machine.\\n\\n-Adrian" 10 60
+	dialog --title "Welcome!" --msgbox "Welcome to Luke's Auto-Rice Bootstrapping Script!\\n\\nThis script will automatically install a fully-featured Linux desktop, which I use as my main machine.\\n\\n-Adrian\\n - dotfilesrepo=$dotfilesrepo\\n - repobranch=$repobranch\\n - progsfile=$progsfile\\n" 10 60
 	}
 
 getuser() { \
