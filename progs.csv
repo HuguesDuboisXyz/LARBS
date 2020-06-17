@@ -78,6 +78,7 @@
 ,urlview,"outputs urls in mail to browser."
 ,xrdb,"applies Xresources values."
 ,vifm,"is a Ncurses-based file manager with vi-like keybindings."
+,nerd-fonts,"is a Iconic font aggregator, collection and patcher"
 ,tmux,"is a terminal Multiplexer."
 ,alacritty,"is a cross-platform, GPU-accelerated terminal emulator."
 ,fish-shell,"is a user friendly shell intended mostly for interactive use."
