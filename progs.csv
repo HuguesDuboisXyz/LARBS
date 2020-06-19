@@ -81,6 +81,8 @@
 ,nerd-fonts,"is a Iconic font aggregator, collection and patcher"
 ,tmux,"is a terminal Multiplexer."
 ,alacritty,"is a cross-platform, GPU-accelerated terminal emulator."
+,transmission,"is a fast, easy and free BitTorrent client."
+,xev,"is a tool for display X events"
 ,fish-shell,"is a user friendly shell intended mostly for interactive use."
 ,ripgrep,"is a fast search tool inspired by ag and grep."
 ,lsd,"is the next gen ls command with lots of pretty colors and awesome icons."
