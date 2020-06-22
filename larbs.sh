@@ -34,7 +34,7 @@ welcomemsg() { \
 getuser() { \
 	# Prompts user for their username.
 	name=$(dialog --inputbox "First, please enter the username you created during the Void Linux install process." 10 60 3>&1 1>&2 2>&3 3>&1) || exit
-	repodir="/home/$name/scr/suckeless"; sudo -u $name mkdir -p "$repodir"
+	repodir="/home/$name/src/local"; sudo -u $name mkdir -p "$repodir"
 	while ! echo "$name" | grep "^[a-z_][a-z0-9_-]*$" >/dev/null 2>&1; do
 		name=$(dialog --no-cancel --inputbox "Username not valid. Be sure your username contains valid characters: lowercase letters, - or _." 10 60 3>&1 1>&2 2>&3 3>&1)
 	done ;}
