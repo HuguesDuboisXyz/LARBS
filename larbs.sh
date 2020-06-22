@@ -28,13 +28,13 @@ grepseq="\"^[PGV]*,\""
 error() { clear; printf "ERROR:\\n%s\\n" "$1"; exit;}
 
 welcomemsg() { \
-	dialog --title "Welcome!" --msgbox "Welcome to Luke's Auto-Rice Bootstrapping Script!\\n\\nThis script will automatically install a fully-featured Linux desktop, which I use as my main machine.\\n\\n-Adrian\\n - dotfilesrepo=$dotfilesrepo\\n - repobranch=$repobranch\\n - progsfile=$progsfile\\n" 10 60
+	dialog --title "Welcome!" --msgbox "Welcome to Luke's Auto-Rice Bootstrapping Script!\\n\\nThis script will automatically install a fully-featured Linux desktop, which I use as my main machine.\\n\\n-Adrian" 10 60
 	}
 
 getuser() { \
 	# Prompts user for their username.
 	name=$(dialog --inputbox "First, please enter the username you created during the Void Linux install process." 10 60 3>&1 1>&2 2>&3 3>&1) || exit
-	repodir="/home/$name/src"; sudo -u $name mkdir -p "$repodir"
+	repodir="/home/$name/scr/suckeless"; sudo -u $name mkdir -p "$repodir"
 	while ! echo "$name" | grep "^[a-z_][a-z0-9_-]*$" >/dev/null 2>&1; do
 		name=$(dialog --no-cancel --inputbox "Username not valid. Be sure your username contains valid characters: lowercase letters, - or _." 10 60 3>&1 1>&2 2>&3 3>&1)
 	done ;}
@@ -49,12 +49,14 @@ maininstall() { # Installs all needed programs from main repo.
 	}
 
 gitmakeinstall() {
-	basepath=$(echo ${1%/*} | sed -e "s/https\:\/\///g")
-	basedir="$repodir/$basepath"
-	mkdir -p $basedir
+	#basepath=$(echo ${1%/*} | sed -e "s/https\:\/\///g")
+	#basedir="$repodir/$basepath"
+	#mkdir -p "$basedir"
+	#progname_noext="$(echo "$progname" | sed -e "s/\.git$//g")"
+	#progname="$(basename "$1")"
+	#dir="$basedir/$progname_noext"
 	progname="$(basename "$1")"
-	progname_noext="$(echo "$progname" | sed -e "s/\.git$//g")"
-	dir="$basedir/$progname_noext"
+	dir="$repodir/$progname"
 	dialog --title "LARBS Installation" --infobox "Installing \`$progname\` ($n of $total) via \`git\` and \`make\`. $(basename "$1") $2" 5 70
 	sudo -u "$name" git clone --depth 1 "$1" "$dir" >/dev/null 2>&1 || { cd "$dir" || return ; sudo -u "$name" git pull --force origin master;}
 	cd "$dir" || exit
