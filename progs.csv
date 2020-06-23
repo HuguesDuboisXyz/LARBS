@@ -88,6 +88,7 @@
 ,ripgrep,"is a fast search tool inspired by ag and grep."
 ,exa,"is a modern remplacement for ls."
 ,tig,"is a text-mode interface for Git."
+,bat,"is a cat(1) clone with syntax highlighting and Git integration."
 ,sc-im,"is a SpreadSheet Calculator (sc) Improvised."
 ,slack-term,"is a Slack client for your terminal."
 G,https://github.com/HuguesDuboisXyz/mutt-wizard.git,"run this and get your email auto configured in minutes."
