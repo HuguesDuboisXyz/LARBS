@@ -88,6 +88,7 @@
 ,exa,"is a modern remplacement for ls."
 ,dust,"is a more intuitive version of du."
 ,fd,"is a simple, fast and user-friendly alternative to find."
+,jq, "is a command-line JSON processor."
 ,tig,"is a text-mode interface for Git."
 ,bat,"is a cat(1) clone with syntax highlighting and Git integration."
 ,sc-im,"is a SpreadSheet Calculator (sc) Improvised."
